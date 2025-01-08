@@ -5,8 +5,11 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
-@Entity(name = "software_companies")
+@Entity
+@Table(name = "software_companies")
 public class SoftwareCompanies {
 	
 	@Id

@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sri.jwt.dao.CompaniesRepository;
 import com.sri.jwt.entity.SoftwareCompanies;
+import com.sri.jwt.entity.User;
 import com.sri.jwt.exception.CompanyNameNotFoundException;
 
 @RestController
@@ -61,6 +63,14 @@ public class CompaniesResource {
 
 	}
 
+	// get specific company details
+	@GetMapping(path = "/software/companies/detail/{companyName}")
+	public List<SoftwareCompanies> retrieveCompanyName(@PathVariable String companyName) {
+
+		return companiesRepository.findByCompaniesNames(companyName);
+
+	}
+
 	// update Company
 	@PutMapping(path = "/software/companies/{id}")
 	public SoftwareCompanies updateCompany(@PathVariable int id, @RequestBody SoftwareCompanies softwareCompanies) {
@@ -72,27 +82,21 @@ public class CompaniesResource {
 
 	// adding new Company
 	@PostMapping(path = "/software/companies")
-	public ResponseEntity<SoftwareCompanies> createNewCompany(@RequestBody SoftwareCompanies softwareCompanies) {
+	public ResponseEntity<?> createNewCompany(@RequestBody SoftwareCompanies softwareCompanies) {
+		// Check if a company with the same name already exists
+		Optional<SoftwareCompanies> existingCompany = companiesRepository
+				.findByCompanyName(softwareCompanies.getCompany_name());
+
+		if (existingCompany.isPresent()) {
+			// Return a response indicating that the company already exists
+			return ResponseEntity.status(HttpStatus.CONFLICT)
+					.body("Company with name '" + softwareCompanies.getCompany_name() + "' already exists.");
+		}
+
+		// Save the new company if the name doesn't exist
 		SoftwareCompanies savedCompany = companiesRepository.save(softwareCompanies);
 
-		// Below URI logic we are creating(inserting) and getting the ID of the user
-		// which we are inserting.
-
-		/*
-		 * 1. when ever we want to return URL of a created user we need to use location,
-		 * ResponseEntity.created(location) this will give us location. 2. URI location
-		 * = /tech/user/(id) 3. ServletUriComponentsBuilder.fromCurrentRequest() -> this
-		 * will give us url of current request for this we are appending {ID}
-		 */
-
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest() // to uri of the current request
-				.path("/{id}") // adding path
-				.buildAndExpand(savedCompany.getId()) // replace above path ({id}) with id of created user
-				.toUri(); // convert into URI and return back
-
-		return ResponseEntity.created(location).build();
-
-		// check in POSTMAN response you will get newly created user URI with ID.
+		return ResponseEntity.status(HttpStatus.CREATED).body(savedCompany);
 	}
 
 	// delete company
