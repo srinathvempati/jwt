@@ -6,6 +6,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import java.net.URI;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -23,20 +24,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sri.jwt.dao.CompaniesRepository;
 import com.sri.jwt.entity.SoftwareCompanies;
 import com.sri.jwt.entity.User;
+import com.sri.jwt.entity.WeatherReport;
 import com.sri.jwt.exception.CompanyNameNotFoundException;
+import com.sri.jwt.service.CompaniesService;
 
 @RestController
 public class CompaniesResource {
 
 	private CompaniesRepository companiesRepository;
+	
+	private final CompaniesService companiesService;
 
-	public CompaniesResource(CompaniesRepository companiesRepository) {
+	public CompaniesResource(CompaniesRepository companiesRepository, CompaniesService companiesService) {
+		this.companiesService = companiesService;
 		this.companiesRepository = companiesRepository;
 	}
 
@@ -44,7 +51,7 @@ public class CompaniesResource {
 	@GetMapping(path = "/software/companies")
 	public List<SoftwareCompanies> retrieveAllCompanies() {
 		return companiesRepository.findAll();
-	}
+	} 
 
 	// get specific company details
 	@GetMapping(path = "/software/companies/{id}")
@@ -62,6 +69,8 @@ public class CompaniesResource {
 		return entityModel;
 
 	}
+	
+	
 
 	// get specific company details
 	@GetMapping(path = "/software/companies/detail/{companyName}")
@@ -123,5 +132,20 @@ public class CompaniesResource {
 		return authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority)
 				.collect(Collectors.toList());
 	}
-
+	
+	@GetMapping("/getWeatherDetails")
+	  public List<WeatherReport> getLocationDetails() {
+		
+		return companiesService.getWeatherDetailsForCompanies();
+		
+	} 
+	
+	// get weather by location
+	@GetMapping("/getWeatherDetails/{location}")
+	  public List<String> getLocationDetailsByLocation(@PathVariable String location) {
+		
+		 return companiesService.getWeatherDetailsForCompaniesByLocation(location);
+		
+	} 
+	
 }

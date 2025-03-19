@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 @Entity
-@Table (name ="user_ytd")
+@Table (name ="user_sri")
 public class User {
 
     @Id
@@ -21,7 +21,7 @@ public class User {
     private String userLastName;
     private String userPassword;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_ROLE",
+    @JoinTable(name = "USER_ROLE_SRI",
             joinColumns = {
                     @JoinColumn(name = "role_Name")
             },
