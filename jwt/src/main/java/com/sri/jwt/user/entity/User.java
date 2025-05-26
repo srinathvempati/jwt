@@ -1,4 +1,4 @@
-package com.sri.jwt.entity;
+package com.sri.jwt.user.entity;
 
 import java.util.Set;
 
@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.sri.jwt.role.entity.Role;
+
 import javax.persistence.JoinColumn;
 
 @Entity

@@ -1,10 +1,10 @@
 package com.sri.jwt.service;
 
+import com.sri.jwt.configuration.util.JwtUtil;
 import com.sri.jwt.dao.UserDao;
 import com.sri.jwt.entity.JwtRequest;
 import com.sri.jwt.entity.JwtResponse;
-import com.sri.jwt.entity.User;
-import com.sri.jwt.util.JwtUtil;
+import com.sri.jwt.user.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,10 +38,26 @@ public class JwtService implements UserDetailsService {
         authenticate(userName, password);
 
         UserDetails userDetails = loadUserByUsername(userName);
-        String newGeneratedToken = jwtUtil.generateToken(userDetails);
+        String newGeneratedToken = jwtUtil.generateToken(userDetails); // valid for 2mins
+        String refreshToken = jwtUtil.generateRefreshToken(userDetails);  // valid for 7 days
+        
 
         User user = userDao.findById(userName).get();
-        return new JwtResponse(user, newGeneratedToken);
+        return new JwtResponse(user, newGeneratedToken, refreshToken);
+    }
+    
+    
+    public JwtResponse refreshAccessToken(String refreshToken) throws Exception {
+        String username = jwtUtil.getUsernameFromToken(refreshToken);
+
+        UserDetails userDetails = loadUserByUsername(username);
+
+        if (jwtUtil.validateToken(refreshToken, userDetails)) {
+            String newAccessToken = jwtUtil.generateToken(userDetails);
+            return new JwtResponse(userDao.findById(username).get(), newAccessToken, refreshToken);
+        } else {
+            throw new Exception("Invalid or expired refresh token");
+        }
     }
 
     @Override
@@ -76,4 +92,6 @@ public class JwtService implements UserDetailsService {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
     }
+
+
 }

@@ -2,11 +2,11 @@ package com.sri.jwt.service;
 
 import com.sri.jwt.dao.RoleDao;
 import com.sri.jwt.dao.UserDao;
-import com.sri.jwt.entity.Role;
-import com.sri.jwt.entity.SoftwareCompanies;
-import com.sri.jwt.entity.User;
-import com.sri.jwt.exception.CompanyNameNotFoundException;
-import com.sri.jwt.exception.UserNameExistException;
+import com.sri.jwt.role.entity.Role;
+import com.sri.jwt.softwarecompanies.entity.SoftwareCompanies;
+import com.sri.jwt.user.entity.User;
+import com.sri.jwt.user.exception.CompanyNameNotFoundException;
+import com.sri.jwt.user.exception.UserNameExistException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

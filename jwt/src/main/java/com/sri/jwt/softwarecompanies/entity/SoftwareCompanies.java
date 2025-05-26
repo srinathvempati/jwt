@@ -1,4 +1,4 @@
-package com.sri.jwt.entity;
+package com.sri.jwt.softwarecompanies.entity;
 
 import java.time.LocalDate;
 

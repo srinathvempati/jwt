@@ -1,4 +1,4 @@
-package com.sri.jwt.entity;
+package com.sri.jwt.role.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

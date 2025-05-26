@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.sri.jwt.entity.SoftwareCompanies;
-import com.sri.jwt.entity.User;
-import com.sri.jwt.entity.WeatherReport;
+import com.sri.jwt.softwarecompanies.entity.SoftwareCompanies;
+import com.sri.jwt.user.entity.User;
+import com.sri.jwt.weather.entity.WeatherReport;
 
 
 @Repository

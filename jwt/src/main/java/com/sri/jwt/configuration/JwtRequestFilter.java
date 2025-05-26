@@ -1,7 +1,7 @@
 package com.sri.jwt.configuration;
 
+import com.sri.jwt.configuration.util.JwtUtil;
 import com.sri.jwt.service.JwtService;
-import com.sri.jwt.util.JwtUtil;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;

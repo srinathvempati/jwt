@@ -1,4 +1,4 @@
-package com.sri.jwt.util;
+package com.sri.jwt.configuration.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -14,9 +14,11 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
+	// Token Expire Logic 
+	
     private static final String SECRET_KEY = "learn_programming_yourself";
 
-    private static final int TOKEN_VALIDITY = 3600 * 5;
+    private static final int TOKEN_VALIDITY = 2 * 60 * 1000;
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
@@ -45,16 +47,36 @@ public class JwtUtil {
         return getClaimFromToken(token, Claims::getExpiration);
     }
 
+    
+    // Token logic expire in 2 mins
     public String generateToken(UserDetails userDetails) {
 
         Map<String, Object> claims = new HashMap<>();
+        
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(new Date(System.currentTimeMillis() + TOKEN_VALIDITY));
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + TOKEN_VALIDITY )) // 2mins
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+        
+        
+    }
+    
+    // refresh token
+    public String generateRefreshToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 7 * 24 * 60 * 60 * 1000)) // 7 days
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
+
 }

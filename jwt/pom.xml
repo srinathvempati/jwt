@@ -67,6 +67,11 @@
             <artifactId>jjwt</artifactId>
             <version>0.9.1</version>
         </dependency>
+        <dependency>
+        	<groupId>com.vcs</groupId>
+        	<artifactId>001-Learn-Spring-Securit</artifactId>
+        	<version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

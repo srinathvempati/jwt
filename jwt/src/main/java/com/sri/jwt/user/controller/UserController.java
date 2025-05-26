@@ -1,8 +1,8 @@
-package com.sri.jwt.controller;
+package com.sri.jwt.user.controller;
 
-import com.sri.jwt.entity.Role;
-import com.sri.jwt.entity.User;
+import com.sri.jwt.role.entity.Role;
 import com.sri.jwt.service.UserService;
+import com.sri.jwt.user.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,6 +1,6 @@
-package com.sri.jwt.controller;
+package com.sri.jwt.role.controller;
 
-import com.sri.jwt.entity.Role;
+import com.sri.jwt.role.entity.Role;
 import com.sri.jwt.service.RoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;

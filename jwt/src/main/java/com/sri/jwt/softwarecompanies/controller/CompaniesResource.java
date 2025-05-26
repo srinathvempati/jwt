@@ -1,4 +1,4 @@
-package com.sri.jwt.controller;
+package com.sri.jwt.softwarecompanies.controller;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -29,11 +29,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.sri.jwt.dao.CompaniesRepository;
-import com.sri.jwt.entity.SoftwareCompanies;
-import com.sri.jwt.entity.User;
-import com.sri.jwt.entity.WeatherReport;
-import com.sri.jwt.exception.CompanyNameNotFoundException;
 import com.sri.jwt.service.CompaniesService;
+import com.sri.jwt.softwarecompanies.entity.SoftwareCompanies;
+import com.sri.jwt.user.entity.User;
+import com.sri.jwt.user.exception.CompanyNameNotFoundException;
+import com.sri.jwt.weather.entity.WeatherReport;
 
 @RestController
 public class CompaniesResource {
@@ -139,6 +139,7 @@ public class CompaniesResource {
 		return companiesService.getWeatherDetailsForCompanies();
 		
 	} 
+	
 	
 	// get weather by location
 	@GetMapping("/getWeatherDetails/{location}")

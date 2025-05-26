@@ -1,7 +1,7 @@
 package com.sri.jwt.service;
 
 import com.sri.jwt.dao.RoleDao;
-import com.sri.jwt.entity.Role;
+import com.sri.jwt.role.entity.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

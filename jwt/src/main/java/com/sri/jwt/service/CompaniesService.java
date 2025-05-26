@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import com.sri.jwt.dao.CompaniesRepository;
-import com.sri.jwt.entity.WeatherReport;
+import com.sri.jwt.weather.entity.WeatherReport;
 
 import java.util.ArrayList;
 import java.util.List;
