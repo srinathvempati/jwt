@@ -1,4 +1,4 @@
-package com.sri.jwt.dao;
+package com.sri.jwt.user.dao;
 
 import java.util.Optional;
 

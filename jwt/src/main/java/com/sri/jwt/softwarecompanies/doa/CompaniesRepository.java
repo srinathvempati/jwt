@@ -1,4 +1,4 @@
-package com.sri.jwt.dao;
+package com.sri.jwt.softwarecompanies.doa;
 
 import java.util.List;
 import java.util.Optional;

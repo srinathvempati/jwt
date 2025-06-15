@@ -1,6 +1,6 @@
-package com.sri.jwt.service;
+package com.sri.jwt.role.service;
 
-import com.sri.jwt.dao.RoleDao;
+import com.sri.jwt.role.dao.RoleDao;
 import com.sri.jwt.role.entity.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;

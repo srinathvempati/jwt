@@ -1,11 +1,12 @@
-package com.sri.jwt.service;
+package com.sri.jwt.softwarecompanies.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import com.sri.jwt.dao.CompaniesRepository;
+
+import com.sri.jwt.softwarecompanies.doa.CompaniesRepository;
 import com.sri.jwt.weather.entity.WeatherReport;
 
 import java.util.ArrayList;

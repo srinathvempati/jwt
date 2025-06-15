@@ -2,10 +2,10 @@ package com.sri.jwt.service;
 
 import com.sri.jwt.configuration.util.JwtUtil;
 import com.sri.jwt.dao.RefreshTokenRepository;
-import com.sri.jwt.dao.UserDao;
 import com.sri.jwt.entity.JwtRequest;
 import com.sri.jwt.entity.JwtResponse;
 import com.sri.jwt.entity.RefreshToken;
+import com.sri.jwt.user.dao.UserDao;
 import com.sri.jwt.user.entity.User;
 
 import org.springframework.beans.factory.annotation.Autowired;

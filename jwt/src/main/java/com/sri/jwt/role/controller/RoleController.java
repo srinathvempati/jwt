@@ -1,7 +1,7 @@
 package com.sri.jwt.role.controller;
 
 import com.sri.jwt.role.entity.Role;
-import com.sri.jwt.service.RoleService;
+import com.sri.jwt.role.service.RoleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

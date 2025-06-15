@@ -1,4 +1,4 @@
-package com.sri.jwt.dao;
+package com.sri.jwt.role.dao;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

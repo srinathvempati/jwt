@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.sri.jwt.dao.CompaniesRepository;
-import com.sri.jwt.service.CompaniesService;
+import com.sri.jwt.softwarecompanies.doa.CompaniesRepository;
 import com.sri.jwt.softwarecompanies.entity.SoftwareCompanies;
+import com.sri.jwt.softwarecompanies.service.CompaniesService;
 import com.sri.jwt.user.entity.User;
 import com.sri.jwt.user.exception.CompanyNameNotFoundException;
 import com.sri.jwt.weather.entity.WeatherReport;
