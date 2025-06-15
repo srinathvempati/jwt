@@ -48,7 +48,8 @@ public class JwtUtil {
     }
 
     
-    // Token logic expire in 2 mins
+    // Token logic expire in 2 mins 
+    // this logic is for Access Token/ Intial  Token 
     public String generateToken(UserDetails userDetails) {
 
         Map<String, Object> claims = new HashMap<>();

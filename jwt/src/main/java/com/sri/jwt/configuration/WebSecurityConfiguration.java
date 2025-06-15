@@ -44,6 +44,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().antMatchers("/refresh-token").permitAll()
                 .and()
+                .authorizeRequests().antMatchers("/jwt/ipaddress/detail").permitAll()
+                .and()
                 .authorizeRequests().antMatchers("/registerNewUser").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/restPassword/{userName}").permitAll()
